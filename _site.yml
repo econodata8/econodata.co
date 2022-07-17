@@ -1,0 +1,34 @@
+name: rworkflow-workshop
+output_dir: '.'
+navbar:
+  title: Econodata.co
+  left:
+  - text: Find Datasets
+    icon: fa-clone
+    href: repo.html
+  - text: Policy
+    icon: fa-clone
+    href: policy.html
+  right:
+  - icon: fa-home
+    href: https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/
+  - icon: fa-wrench
+    href: https://rverse-tutorials.github.io/RWorkflow-Workshop
+  - icon: fa-line-chart
+    href: https://fish-forecast.github.io/Catch-Forecasting-INCOIS/
+  - icon: fa-github
+    href: https://github.com/RVerse-Tutorials/RWorkflow-Workshop
+    
+output:
+  html_document:
+    theme: readable
+    toc_depth: 2
+    toc_float:
+      collapsed: no
+    highlight: textmate
+    css: styles.css
+    lib_dir: site_libs
+    self_contained: no
+    include:
+      in_header: header.html
+

@@ -1,0 +1,26 @@
+---
+title: "Econodata.co"
+---
+
+
+
+<img style="float: right;" src="l.jpg" width=30%>
+
+* is a web page that was created with the objective of liberalizing economic and financial data. 
+
+* offers a large amount of data ready to be downloaded and used for your project or modeling. 
+* also offers to visualize some macro indicators in a dashboard format.
+
+* is completely open source and free.
+
+* does not collect your data and will never send you ads.
+
+
+
+
+<hr>
+
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> ------------------------------------ <i class="fas fa-cubes"></i>
+</div>

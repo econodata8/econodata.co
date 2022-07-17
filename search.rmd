@@ -1,0 +1,11 @@
+---
+title: "Datasets repository"
+output:
+  html_document:
+---
+
+````{=html}
+```{r, echo=FALSE, results='asis'}
+xfun::file_string('search.html')
+```
+````

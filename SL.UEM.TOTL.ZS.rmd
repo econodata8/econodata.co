@@ -1,0 +1,73 @@
+---
+title: "Unemployment, total (% of total labor force) (modeled ILO estimate)"
+---
+
+
+**Unemployment** refers to the share of the labor force that is without work but available for and seeking employment.
+
+
+
+* **ID:** SL.UEM.TOTL.ZS
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='SL.UEM.TOTL.ZS', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "SL.UEM.TOTL.ZS",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "SL.UEM.TOTL.ZS",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='SL.UEM.TOTL.ZS', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~SL.UEM.TOTL.ZS) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$SL.UEM.TOTL.ZS
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```

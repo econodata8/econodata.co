@@ -1,0 +1,73 @@
+---
+title: "Population, total"
+---
+
+
+**Total population** is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship. The values shown are midyear estimates.
+
+
+
+* **ID:** SP.POP.TOTL
+* **Source:**  ( 1 ) United Nations Population Division. World Population Prospects: 2019 Revision. ( 2 ) Census reports and other statistical publications from national statistical offices, ( 3 ) Eurostat: Demographic Statistics, ( 4 ) United Nations Statistical Division. Population and Vital Statistics Reprot ( various years ), ( 5 ) U.S. Census Bureau: International Database, and ( 6 ) Secretariat of the Pacific Community: Statistics and Demography Programme.
+* **Periodicity:** Annual
+* **Topic:** Health: Population: Structure
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='SP.POP.TOTL', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "SP.POP.TOTL",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "SP.POP.TOTL",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='SP.POP.TOTL', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~SP.POP.TOTL) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$SP.POP.TOTL
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```

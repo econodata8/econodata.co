@@ -1,0 +1,71 @@
+---
+title: "Import unit value index (2000 = 100)"
+---
+
+
+**Import unit value indices** come from UNCTAD's trade database. Unit value indices are based on data reported by countries that demonstrate consistency under UNCTAD quality controls, supplemented by UNCTAD’s estimates using the previous year’s trade values at the Standard International Trade Classification three-digit level as weights. To improve data coverage, especially for the latest periods, UNCTAD constructs a set of average prices indexes at the three-digit product classification of the Standard International Trade Classification revision 3 using UNCTAD’s Commodity Price Statistics, interna¬tional and national sources, and UNCTAD secretariat estimates.
+
+* **ID:** TM.UVI.MRCH.XD.WD
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='TM.UVI.MRCH.XD.WD', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "TM.UVI.MRCH.XD.WD",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "TM.UVI.MRCH.XD.WD",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='TM.UVI.MRCH.XD.WD', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~TM.UVI.MRCH.XD.WD) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2020
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2020), ]
+x=newdata$country
+y=newdata$TM.UVI.MRCH.XD.WD
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```

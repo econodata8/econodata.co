@@ -1,0 +1,71 @@
+---
+title: "GNI per capita, PPP (current international $)"
+---
+
+
+**This indicator provides per capita values for gross national income (GNI. Formerly GNP)** expressed in current international dollars converted by purchasing power parity (PPP) conversion factor. GNI is the sum of value added by all resident producers plus any product taxes (less subsidies) not included in the valuation of output plus net receipts of primary income (compensation of employees and property income) from abroad. PPP conversion factor is a spatial price deflator and currency converter that eliminates the effects of the differences in price levels between countries.
+
+* **ID:** NY.GNP.PCAP.PP.CD
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='NY.GNP.PCAP.PP.CD', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "NY.GNP.PCAP.PP.CD",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "NY.GNP.PCAP.PP.CD",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='NY.GNP.PCAP.PP.CD', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~NY.GNP.PCAP.PP.CD) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$NY.GNP.PCAP.PP.CD
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```

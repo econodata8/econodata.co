@@ -1,0 +1,72 @@
+---
+title: "Imports of goods and services (annual % growth)"
+---
+
+
+**Annual growth rate of imports of goods and services** based on constant local currency. Aggregates are based on constant 2015 prices, expressed in U.S. dollars. Imports of goods and services represent the value of all goods and other market services received from the rest of the world. They include the value of merchandise, freight, insurance, transport, travel, royalties, license fees, and other services, such as communication, construction, financial, information, business, personal, and government services. They exclude compensation of employees and investment income (formerly called factor services) and transfer payments.
+
+* **ID:** NE.IMP.GNFS.KD.ZG
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='NE.IMP.GNFS.KD.ZG', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "NE.IMP.GNFS.KD.ZG",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "NE.IMP.GNFS.KD.ZG",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='NE.IMP.GNFS.KD.ZG', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~NE.IMP.GNFS.KD.ZG) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$NE.IMP.GNFS.KD.ZG
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```
+

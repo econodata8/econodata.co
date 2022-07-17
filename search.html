@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+</head>
+<body>
+
+<h2></h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<ul id="myUL">
+  <li><a href="NY.GDP.MKTP.CD.html">GDP (current US$)</a></li>
+  <li><a href="NY.GDP.MKTP.KD.ZG.html">GDP growth (annual %)</a></li>
+  <li><a href="NV.AGR.TOTL.KD.ZG.html">Agriculture, value added (annual % growth)</a></li>
+  <li><a href="NV.IND.TOTL.KD.ZG.html">Industry, value added (annual % growth)</a></li>
+  <li><a href="NV.IND.MANF.KD.ZG.html">Manufacturing, value added (annual % growth)</a></li>
+  <li><a href="NV.SRV.TOTL.KD.ZG.html">Services, value added (annual % growth)</a></li>
+  <li><a href="NE.CON.TOTL.KD.ZG.html">Final consumption expenditure (annual % growth)</a></li>
+  <li><a href="NE.GDI.TOTL.KD.ZG.html">Gross capital formation (annual % growth)</a></li>
+  <li><a href="NE.EXP.GNFS.KD.ZG.html">Exports of goods and services (annual % growth)</a></li>
+  <li><a href="NE.IMP.GNFS.KD.ZG.html">Imports of goods and services (annual % growth)</a></li>
+  <li><a href="NV.AGR.TOTL.ZS.html">Agriculture, value added (% of GDP)</a></li>
+  <li><a href="NV.IND.TOTL.ZS.html">Industry, value added (% of GDP)</a></li>
+  <li><a href="NV.SRV.TOTL.ZS.html">Services, value added (% of GDP)</a></li>
+  <li><a href="NE.CON.TOTL.ZS.html">Final consumption expenditure (% of GDP)</a></li>
+  <li><a href="NE.GDI.TOTL.ZS.html">Gross capital formation (% of GDP)</a></li>
+  <li><a href="NE.EXP.GNFS.ZS.html">Exports of goods and services (% of GDP)</a></li>
+  <li><a href="NE.IMP.GNFS.ZS.html">Imports of goods and services (% of GDP)</a></li>
+  <li><a href="NY.GNP.PCAP.CD.html">GNI per capita, Atlas method (current US$)</a></li>
+  <li><a href="NY.GNP.PCAP.PP.CD.html">GNI per capita, PPP (current international $)</a></li>
+  <li><a href="SP.POP.TOTL.html">Population, total</a></li>
+  <li><a href="NY.GNS.ICTR.ZS.html">Gross savings (% of GDP)</a></li>
+  <li><a href="NY.ADJ.SVNG.GN.ZS.html">Adjusted net savings, including particulate emission damage (% of GNI)</a></li>
+  <li><a href="TX.VAL.MRCH.XD.WD.html">Export value index (2000 = 100)</a></li>
+  <li><a href="TM.VAL.MRCH.XD.WD.html">Import value index (2000 = 100)</a></li>
+  <li><a href="BX.TRF.PWKR.DT.GD.ZS.html">Personal remittances, received (% of GDP)</a></li>
+  <li><a href="BN.CAB.XOKA.GD.ZS.html">Current account balance (% of GDP)</a></li>
+  <li><a href="BX.KLT.DINV.WD.GD.ZS.html">Foreign direct investment, net inflows (% of GDP)</a></li>
+  <li><a href="FP.CPI.TOTL.html">Consumer price index (2010 = 100)</a></li>
+  <li><a href="TX.UVI.MRCH.XD.WD.html">Export unit value index (2000 = 100)</a></li>
+  <li><a href="TM.UVI.MRCH.XD.WD.html">Import unit value index (2000 = 100)</a></li>
+  <li><a href="TT.PRI.MRCH.XD.WD.html">Net barter terms of trade index (2000 = 100)</a></li>
+  <li><a href="SL.GDP.PCAP.EM.KD.html">GDP per person employed (constant 2011 PPP $)</a></li>
+  <li><a href="SL.UEM.TOTL.ZSv">Unemployment, total (% of total labor force) (modeled ILO estimate)</a></li>
+  <li><a href="NV.AGR.EMPL.KD.html">Agriculture, value added per worker (constant 2010 US$)</a></li>
+  <li><a href="NV.IND.EMPL.KD.html">Industry, value added per worker (constant 2010 US$)</a></li>
+  <li><a href="NV.SRV.EMPL.KD.html">Services, value added per worker (constant 2010 US$)</a></li>
+</ul>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>

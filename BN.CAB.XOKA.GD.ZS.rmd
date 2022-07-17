@@ -1,0 +1,71 @@
+---
+title: "Current account balance (% of GDP)"
+---
+
+
+**Current account balance** is the sum of net exports of goods and services, net primary income, and net secondary income.
+
+* **ID:** BN.CAB.XOKA.GD.ZS
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='BN.CAB.XOKA.GD.ZS', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "BN.CAB.XOKA.GD.ZS",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "BN.CAB.XOKA.GD.ZS",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='BN.CAB.XOKA.GD.ZS', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~BN.CAB.XOKA.GD.ZS) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$BN.CAB.XOKA.GD.ZS
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```

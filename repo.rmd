@@ -1,0 +1,9 @@
+---
+title: "Datasets repository"
+---
+
+````{=html}
+```{r, echo=FALSE, results='asis'}
+xfun::file_string('search.html')
+```
+````

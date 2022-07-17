@@ -1,0 +1,71 @@
+---
+title: "Import value index (2000 = 100)"
+---
+
+
+**Import value indexes** are the current value of imports (c.i.f.) converted to U.S. dollars and expressed as a percentage of the average for the base period (2000). UNCTAD's import value indexes are reported for most economies. For selected economies for which UNCTAD does not publish data, the import value indexes are derived from import volume indexes (line 73) and corresponding unit value indexes of imports (line 75) in the IMF's International Financial Statistics.
+
+* **ID:** TM.VAL.MRCH.XD.WD
+* **Source:** World Bank national accounts data, and OECD National Accounts data files.
+* **Periodicity:** Annual
+* **Topic:** Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(WDI)
+dat = WDI(indicator='TM.VAL.MRCH.XD.WD', country='all', start=1960, end=2022)
+
+library(downloadthis)
+
+dat %>%
+  download_this(
+    output_name = "TM.VAL.MRCH.XD.WD",
+    output_extension = ".xlsx",
+    button_label = "Download data as xlsx",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+dat %>%
+  download_this(
+    output_name = "TM.VAL.MRCH.XD.WD",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+
+
+<br>
+<br>
+
+
+
+
+
+### Evolution of the indicator from 1960 to 2022
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dat2 = WDI(indicator='TM.VAL.MRCH.XD.WD', country=c('Z4','Z7','ZJ','ZQ','XU','8S','ZG'), start=1960, end=2022)
+library(plotly)
+plot_ly(dat2, x = ~year, y = ~TM.VAL.MRCH.XD.WD) %>%
+  add_lines(linetype = ~country)
+```
+
+### Value of the indicator in 2021
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+newdata <- dat[ which(dat$year==2021), ]
+x=newdata$country
+y=newdata$TM.VAL.MRCH.XD.WD
+z=as.data.frame(cbind(x,y))
+names(z)=c('Country','Value')
+knitr::kable(z,digits =2, align = "ll")
+```
